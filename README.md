@@ -191,37 +191,6 @@ bachelor-fantasy-league/
 │   └── requirements.txt
 └── README.md
 ```
-
-## 🌟 Highlights for FAANG Interviews
-
-### Technical Depth
-- **Full-stack Architecture** - Complete end-to-end system
-- **Real-time Systems** - WebSocket implementation at scale
-- **Machine Learning Integration** - Practical AI application
-- **Database Design** - Relational modeling with performance
-- **Security Implementation** - Production-ready auth system
-
-### Engineering Skills
-- **System Design** - Scalable, maintainable architecture
-- **API Design** - RESTful endpoints with proper HTTP methods
-- **Data Modeling** - Efficient database schema design
-- **Async Programming** - Non-blocking operations
-- **Error Handling** - Comprehensive exception management
-
-### Product Thinking
-- **User Experience** - Intuitive interface design
-- **Feature Completeness** - End-to-end functionality
-- **Performance Focus** - Optimized for speed and scale
-- **Real-world Application** - Addresses actual user needs
-
-## 📞 Demo Talking Points
-
-1. **"Real-time fantasy platform with 1000+ concurrent users"**
-2. **"ML models predict contestant outcomes with 75% accuracy"**
-3. **"WebSocket architecture delivers <50ms message latency"**
-4. **"Full-stack TypeScript/Python with async operations"**
-5. **"Production-ready auth, security, and error handling"**
-
 ---
 
 **Built by Kashish Maheshwari** - Demonstrating full-stack development, real-time systems, and machine learning integration
