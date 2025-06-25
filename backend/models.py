@@ -1,3 +1,4 @@
+
 from sqlalchemy import Column, String, Integer, Float, Boolean, DateTime, Text, JSON, ForeignKey, Table, Index
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -97,7 +98,7 @@ class User(Base):
     push_notifications = Column(Boolean, default=True)
     spoiler_protection = Column(Boolean, default=False)
     auto_pick_team = Column(Boolean, default=False)
-    favorite_show_types = Column(ARRAY(String), default=[])
+    favorite_show_types = Column(Text, default="")
     
     # System fields
     is_admin = Column(Boolean, default=False)
@@ -197,7 +198,7 @@ class Episode(Base):
     # Content metadata
     preview_url = Column(String(500))
     highlights = Column(JSON)  # Key moments, timestamps
-    contestants_featured = Column(ARRAY(String))
+    contestants_featured = Column(Text)
     
     # System fields
     created_at = Column(DateTime, default=datetime.utcnow)
