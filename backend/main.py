@@ -25,7 +25,7 @@ from schemas import (
 from auth import create_access_token, verify_token, get_current_user, hash_password, verify_password
 # from ml_models import PredictionEngine, SentimentAnalyzer
 from websocket_manager import ConnectionManager
-from background_tasks import BackgroundTaskManager
+# from background_tasks import BackgroundTaskManager
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
