@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException, Depends, status, WebSocket, WebSocke
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.responses import JSONResponse
+from dotenv import load_dotenv
+load_dotenv()
 import asyncio
 import json
 import logging
