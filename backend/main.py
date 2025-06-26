@@ -53,7 +53,7 @@ async def lifespan(app: FastAPI):
     logger.info("🤖 ML models loaded")
     
     # Start background tasks
-    await task_manager.start()
+    # await task_manager.start()
     logger.info("⚡ Background tasks started")
     
     yield
