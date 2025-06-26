@@ -32,10 +32,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Initialize ML components
-prediction_engine = PredictionEngine()
-sentiment_analyzer = SentimentAnalyzer()
+# prediction_engine = PredictionEngine()
+# sentiment_analyzer = SentimentAnalyzer()
 websocket_manager = ConnectionManager()
-task_manager = BackgroundTaskManager()
+# task_manager = BackgroundTaskManager()
 
 # Startup and shutdown events
 @asynccontextmanager
@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI):
     logger.info("✅ Database initialized")
     
     # Load ML models
-    await prediction_engine.load_models()
+    # await prediction_engine.load_models()
     logger.info("🤖 ML models loaded")
     
     # Start background tasks
@@ -232,10 +232,10 @@ async def get_contestants(
         enhanced_contestants = []
         for contestant in contestants:
             # Get ML predictions
-            predictions = await prediction_engine.predict_contestant_outcomes(contestant)
+            # predictions = await prediction_engine.predict_contestant_outcomes(contestant)
             
             # Get sentiment analysis
-            sentiment = await sentiment_analyzer.analyze_contestant_sentiment(contestant)
+            # sentiment = await sentiment_analyzer.analyze_contestant_sentiment(contestant)
             
             # Enhance contestant data
             enhanced_contestant = {
