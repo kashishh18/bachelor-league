@@ -6,6 +6,7 @@ interface Show {
   season: number;
   type: string;
   status: string;
+  currentEpisode?: number;
 }
 
 interface ShowContextType {
