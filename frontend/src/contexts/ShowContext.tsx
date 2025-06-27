@@ -12,6 +12,9 @@ interface Show {
 interface ShowContextType {
   currentShow: Show | null;
   shows: Show[];
+  activeShows: Show[];
+  completedShows: Show[];
+  upcomingShows: Show[];
   setCurrentShow: (show: Show) => void;
   loading: boolean;
 }
@@ -23,8 +26,21 @@ export const ShowProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [shows, setShows] = useState<Show[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // Filter shows by status
+  const activeShows = shows.filter(show => show.status === 'active');
+  const completedShows = shows.filter(show => show.status === 'completed');
+  const upcomingShows = shows.filter(show => show.status === 'upcoming');
+
   return (
-    <ShowContext.Provider value={{ currentShow, shows, setCurrentShow, loading }}>
+    <ShowContext.Provider value={{ 
+      currentShow, 
+      shows, 
+      activeShows,
+      completedShows,
+      upcomingShows,
+      setCurrentShow, 
+      loading 
+    }}>
       {children}
     </ShowContext.Provider>
   );
