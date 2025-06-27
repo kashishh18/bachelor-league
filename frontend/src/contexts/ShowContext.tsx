@@ -8,7 +8,7 @@ interface Show {
   type: "bachelor" | "bachelorette" | "bachelor-in-paradise" | "golden-bachelor" | "golden-bachelorette";
   status: string;
   currentEpisode?: number;
-  lead?: string;
+  lead: string;
   isActive: boolean;
   startDate: string;
   network: string;
