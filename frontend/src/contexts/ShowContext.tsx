@@ -3,11 +3,17 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 interface Show {
   id: string;
   title: string;
+  name: string;
   season: number;
   type: "bachelor" | "bachelorette" | "bachelor-in-paradise" | "golden-bachelor" | "golden-bachelorette";
   status: string;
   currentEpisode?: number;
   lead?: string;
+  isActive: boolean;
+  startDate: string;
+  network: string;
+  description?: string;
+  contestants?: any[];
 }
 
 interface ShowContextType {
