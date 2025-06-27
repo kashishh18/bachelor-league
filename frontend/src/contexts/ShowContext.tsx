@@ -14,6 +14,10 @@ interface Show {
   network: string;
   description?: string;
   contestants?: any[];
+  logoUrl?: string;
+  totalEpisodes?: number;
+  location?: string;
+  premiereDate?: string;
 }
 
 interface ShowContextType {
