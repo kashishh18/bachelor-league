@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import LoadingSpinner from './components/LoadingSpinner';
+import Home from './components/Home';
 
 // Contexts
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -101,27 +102,69 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
-// App Layout Component
+// Beautiful App Layout Component
 const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
       <Navbar />
-      <main className="container mx-auto px-4 py-8">
-        {children}
+      <main className="relative">
+        {/* Background decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-200 to-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-rose-200 to-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        </div>
+        
+        <div className="relative z-10 container mx-auto px-4 py-8">
+          {children}
+        </div>
       </main>
+      
       <Toaster
         position="top-right"
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#ffffff',
+            background: 'rgba(255, 255, 255, 0.95)',
             color: '#374151',
-            border: '1px solid #e5e7eb',
-            borderRadius: '0.5rem',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(236, 72, 153, 0.2)',
+            borderRadius: '12px',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            backdropFilter: 'blur(10px)',
+          },
+          success: {
+            iconTheme: {
+              primary: '#ec4899',
+              secondary: '#ffffff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#ffffff',
+            },
           },
         }}
       />
+    </div>
+  );
+};
+
+// Public Layout (for login/register pages)
+const PublicLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-200 to-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-rose-200 to-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-gradient-to-br from-purple-200 to-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+      </div>
+      
+      <div className="relative z-10 w-full max-w-md mx-auto px-4">
+        {children}
+      </div>
+      
+      <Toaster position="top-center" />
     </div>
   );
 };
@@ -132,33 +175,33 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // Initialize socket connection
-    const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:8000', {
+    const newSocket = io(process.env.REACT_APP_API_URL || 'https://bachelor-league-production.up.railway.app', {
       transports: ['websocket', 'polling'],
       upgrade: true,
       rememberUpgrade: true,
     });
 
     newSocket.on('connect', () => {
-      console.log('Connected to server');
+      console.log('📡 Connected to Bachelor League server');
     });
 
     newSocket.on('disconnect', () => {
-      console.log('Disconnected from server');
+      console.log('📡 Disconnected from server');
     });
 
     // Real-time score updates
     newSocket.on('score_update', (data) => {
-      console.log('Score update received:', data);
+      console.log('💯 Score update received:', data);
     });
 
     // Live episode events
     newSocket.on('episode_event', (data) => {
-      console.log('Episode event:', data);
+      console.log('📺 Episode event:', data);
     });
 
     // Prediction updates
     newSocket.on('prediction_update', (data) => {
-      console.log('Prediction update:', data);
+      console.log('🤖 Prediction update:', data);
     });
 
     setSocket(newSocket);
@@ -175,13 +218,37 @@ const App: React.FC = () => {
           <ShowProvider>
             <Router>
               <Routes>
-                {/* Public Routes */}
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
+                {/* Public Routes with special layout */}
+                <Route
+                  path="/login"
+                  element={
+                    <PublicLayout>
+                      <Login />
+                    </PublicLayout>
+                  }
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicLayout>
+                      <Register />
+                    </PublicLayout>
+                  }
+                />
                 
-                {/* Protected Routes */}
+                {/* Home page - public but with nav */}
                 <Route
                   path="/"
+                  element={
+                    <AppLayout>
+                      <Home />
+                    </AppLayout>
+                  }
+                />
+                
+                {/* Protected Routes with beautiful layout */}
+                <Route
+                  path="/dashboard"
                   element={
                     <ProtectedRoute>
                       <AppLayout>
