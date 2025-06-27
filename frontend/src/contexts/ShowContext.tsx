@@ -7,17 +7,17 @@ interface Show {
   season: number;
   type: "bachelor" | "bachelorette" | "bachelor-in-paradise" | "golden-bachelor" | "golden-bachelorette";
   status: string;
-  currentEpisode?: number;
+  currentEpisode: number;
   lead: string;
   isActive: boolean;
   startDate: string;
   network: string;
-  description?: string;
-  contestants?: any[];
-  logoUrl?: string;
-  totalEpisodes?: number;
-  location?: string;
-  premiereDate?: string;
+  description: string;
+  contestants: any[];
+  logoUrl: string;
+  totalEpisodes: number;
+  location: string;
+  premiereDate: string;
 }
 
 interface ShowContextType {
