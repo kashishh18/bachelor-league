@@ -38,7 +38,7 @@ export const ShowProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(false);
 
   // Filter shows by status
-  const activeShows = shows.filter(show => show.status === 'active');
+  const activeShows = shows.filter(show => show.status === 'airing');
   const completedShows = shows.filter(show => show.status === 'completed');
   const upcomingShows = shows.filter(show => show.status === 'upcoming');
 
