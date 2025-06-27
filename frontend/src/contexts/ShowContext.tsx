@@ -4,7 +4,7 @@ interface Show {
   id: string;
   title: string;
   season: number;
-  type: string;
+  type: "bachelor" | "bachelorette" | "bachelor-in-paradise" | "golden-bachelor" | "golden-bachelorette";
   status: string;
   currentEpisode?: number;
 }
