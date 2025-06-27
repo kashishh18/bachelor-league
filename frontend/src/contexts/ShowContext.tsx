@@ -6,7 +6,7 @@ interface Show {
   name: string;
   season: number;
   type: "bachelor" | "bachelorette" | "bachelor-in-paradise" | "golden-bachelor" | "golden-bachelorette";
-  status: string;
+  status: "upcoming" | "airing" | "completed";
   currentEpisode: number;
   lead: string;
   isActive: boolean;
